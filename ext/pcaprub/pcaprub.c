@@ -571,7 +571,8 @@ rbpcap_next_data(VALUE self)
 	Data_Get_Struct(self, rbpcap_t, rbp);
 	
 	if(! rbpcap_ready(rbp)) return self; 
-	pcap_setnonblock(rbp->pd, 1, eb);
+  // This is the cause of ignorance to @timeout value. Don't set nonblock. 
+	//pcap_setnonblock(rbp->pd, 1, eb);
 
 #ifdef MAKE_TRAP
 	TRAP_BEG;
@@ -617,7 +618,8 @@ rbpcap_next_packet(VALUE self)
 	
 	if(! rbpcap_ready(rbp)) return self; 
 
-	pcap_setnonblock(rbp->pd, 1, eb);
+  // This is the cause of ignorance to @timeout value. Don't set nonblock. 
+	//pcap_setnonblock(rbp->pd, 1, eb);
 
 #ifdef MAKE_TRAP
 	TRAP_BEG;
